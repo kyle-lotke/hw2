@@ -16,13 +16,37 @@ std::string convToLower(std::string src)
 std::set<std::string> parseStringToWords(string rawWords)
 {
 
+    std::istringstream iss(rawWords);
+    std::string word;
+    std::string current;
+    std::set<string> words;
 
+    rawWords = trim(rawWords); // trims to save time iterating
 
+    while(iss >> word) {
+        word = trim(word); // gets rid of white space on both ends
+        current = "";
+        word = convToLower(word); // makes all letters lowercase
+        for(unsigned int i = 0; i < word.size(); i++) { // for each space parsed word, iterate through its characters
 
+            if(ispunct(word[i])) { // checks if char is punctuation
 
+                if(current.size() > 1) { // makes sure the length of word is bigger than 1, per assignment directions
+                    words.insert(current);
+                    current = ""; // reset current
+                }
+                
+            }
 
-
-
+            else {
+                current += word[i]; // if not punctuation, add character to current string
+            }
+        }
+        if(current.size() > 1) { // need to add last current word if longer than 1
+            words.insert(current);
+        }
+    }
+    return words;
 
 
 }
