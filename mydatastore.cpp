@@ -125,14 +125,14 @@ void mydatastore::display(std::string userName) {
 			count++;
 		}
 	
-	} else cout << "Invalid request" << endl; // not valid user
+	} else cout << "Invalid username" << endl; // not valid user
 
 }
 
 void mydatastore::buy(std::string userName) {
   // Ensure valid user exists
     if (users_.find(userName) == users_.end()) {  
-        cout << "Invalid request" << endl;  
+        cout << "Invalid username" << endl;  
         return; // Exit immediately if user is not found
     }
 
