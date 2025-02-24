@@ -128,9 +128,12 @@ std::string ProductBookParser::categoryID()
  * Your job to fill in the code to create a new book product
  * using the data members in this class and the parent ProductParser class
  */
-Product* ProductBookParser::makeProduct()
-{
-
+Product* ProductBookParser::makeProduct() {
+    if(prodName_.empty() || author_.empty() || isbn_.empty()) {
+        return NULL;
+    }
+    Product* newProd = new Book("book", prodName_, price_, qty_, isbn_, author_);
+    return newProd; // might casue mem leak
 
 }
 
@@ -183,11 +186,13 @@ std::string ProductClothingParser::categoryID()
  * Your job to fill in the code to create a new clothing product
  * using the data members in this class and the parent ProductParser class
  */
-Product* ProductClothingParser::makeProduct()
-{
+Product* ProductClothingParser::makeProduct() {
+    if(prodName_.empty() || size_.empty() || brand_.empty()) {
+        return nullptr;
+    }
 
-
-
+    Product* newProd = new Clothing("clothing", prodName_, price_, qty_, size_, brand_);
+    return newProd;
 }
 
 
@@ -243,8 +248,11 @@ std::string ProductMovieParser::categoryID()
  * Your job to fill in the code to create a new movie product
  * using the data members in this class and the parent ProductParser class
  */
-Product* ProductMovieParser::makeProduct()
-{
+Product* ProductMovieParser::makeProduct() {
+    if(prodName_.empty() || genre_.empty() || rating_.empty()) {
+        return nullptr;
+    }
 
-
+    Product* newProd = new Movie("movie", prodName_, price_, qty_, genre_, rating_);
+    return newProd;
 }
